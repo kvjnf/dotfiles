@@ -55,18 +55,28 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 #######################################
 # php homebrewの設定
 #######################################
+case ${OSTYPE} in
+    darwin*)
 #export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+        export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+        ;;
+esac
 #######################################
 # python pyenvの設定
 #######################################
-export PATH="$HOME/.pyenv/shims:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export PATH="$PYENV_ROOT/versions/anaconda3-4.1.0/bin:$PATH"
 #######################################
 # rbenvの設定
 #######################################
-[[ -d ~/.rbenv  ]] && \
-  export PATH=${HOME}/.rbenv/bin:${PATH} && \
-  eval "$(rbenv init -)"
+#[[ -d ~/.rbenv  ]] && \
+#  export PATH=${HOME}/.rbenv/bin:${PATH} && \
+#  eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 #######################################
 # ANDROID_HOME設定
 #######################################
@@ -104,10 +114,13 @@ alias Atom="open -a /Applications/Atom.app"
 alias htdocs="/Applications/MAMP/htdocs"
 alias beans="open -a /Applications/NetBeans/NetBeans\ 8.0.2.app"
 alias nah="git reset --hard;git clean -df"
-#python
-eval "$(pyenv init -)"
-eval 
-export PATH=$(brew --prefix)/bin:$PATH
-
+case ${OSTYPE} in
+    darwin*)
+        export PATH=$(brew --prefix)/bin:$PATH
+        ;;
+    linux*)
+        alias pbcopy='xsel --clipboard --input'
+        ;;
+esac
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

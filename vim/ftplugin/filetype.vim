@@ -1,0 +1,1 @@
+/home/kvjnf/dotfiles/vim/filetype.vim

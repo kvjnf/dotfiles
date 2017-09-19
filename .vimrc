@@ -26,7 +26,7 @@ let g:lightline = {
 " NerdTree
 call dein#add('scrooloose/nerdtree')
 let g:NERDTreeShowHidden=1 " 隠しファイルを表示する
-autocmd vimenter * NERDTree " NerdTreeの自動開始
+"autocmd vimenter * NERDTree " NerdTreeの自動開始
 " Nerd Treeを表示する
 map <C-\> :NERDTreeToggle<CR>
  
@@ -121,6 +121,13 @@ call dein#add('othree/html5.vim')
 
 call dein#add('tbastos/vim-lua')
 let g:lua_syntax_someoption = 1
+
+"-----------------------------------
+"markdown
+
+call dein#add('plasticboy/vim-markdown')
+call dein#add('kannokanno/previm')
+call dein#add('tyru/open-browser.vim')
 
 "-----------------------------------
 call dein#end()
