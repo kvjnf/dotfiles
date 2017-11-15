@@ -15,6 +15,9 @@ setopt IGNORE_EOF
 setopt NO_FLOW_CONTROL
 #beep音を鳴らさない
 setopt NO_BEEP
+# *とか?とか[とか]を使うと、グロブ展開とかいうのが行われるらしい
+# 対策
+setopt nonomatch
 #補完候補が２つ以上の場合、選択出来るようにする
 zstyle ':completion:*:default' menu select=2
 #MAMPのpath
