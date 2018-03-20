@@ -130,6 +130,11 @@ call dein#add('kannokanno/previm')
 call dein#add('tyru/open-browser.vim')
 
 "-----------------------------------
+" API Blueprint Syntax 
+
+call dein#add('kylef/apiblueprint.vim')
+
+"-----------------------------------
 call dein#end()
 
 if dein#check_install()
