@@ -61,7 +61,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 case ${OSTYPE} in
     darwin*)
 #export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-        export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+        export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
         ;;
 esac
 #######################################
@@ -69,7 +69,9 @@ esac
 #######################################
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if which pyenv > /dev/null; then
+    eval "$(pyenv init -)"
+fi
 export PATH="$PYENV_ROOT/versions/anaconda3-4.1.0/bin:$PATH"
 #######################################
 # pip PATH設定
@@ -129,6 +131,7 @@ alias dockerlocal="docker run -d -p 3030:80 -v '$1:/usr/local/apache2/htdocs/' h
 case ${OSTYPE} in
     darwin*)
         export PATH=$(brew --prefix)/bin:$PATH
+        defaults write com.apple.dock no-bouncing -bool true
         ;;
     linux*)
         alias pbcopy='xsel --clipboard --input'
