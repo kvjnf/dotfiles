@@ -72,6 +72,14 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 export PATH="$PYENV_ROOT/versions/anaconda3-4.1.0/bin:$PATH"
 #######################################
+# pip PATH設定
+#######################################
+export PATH="$HOME/.local/bin:$PATH"
+#######################################
+# yarn PATH設定
+#######################################
+export PATH="$(yarn global bin):$PATH"
+#######################################
 # rbenvの設定
 #######################################
 #[[ -d ~/.rbenv  ]] && \
@@ -117,6 +125,7 @@ alias Atom="open -a /Applications/Atom.app"
 alias htdocs="/Applications/MAMP/htdocs"
 alias beans="open -a /Applications/NetBeans/NetBeans\ 8.0.2.app"
 alias nah="git reset --hard;git clean -df"
+alias dockerlocal="docker run -d -p 3030:80 -v '$1:/usr/local/apache2/htdocs/' httpd"
 case ${OSTYPE} in
     darwin*)
         export PATH=$(brew --prefix)/bin:$PATH
@@ -127,3 +136,12 @@ case ${OSTYPE} in
 esac
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# wpcli
+if [ -e /home/$USER/wp-completion.bash ]; then
+    source /home/$USER/wp-completion.bash
+fi
+
+
+# added by travis gem
+[ -f /home/kvjnf/.travis/travis.sh ] && source /home/kvjnf/.travis/travis.sh
