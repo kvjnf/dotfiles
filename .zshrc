@@ -103,6 +103,40 @@ if type "neofetch" > /dev/null 2>&1; then
     neofetch
 fi
 #######################################
+# zplug
+#######################################
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+zplug "b-ryan/powerline-shell"
+
+# 未インストール項目をインストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+#######################################
+# powerline-shell
+#######################################
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
+#######################################
 # Alias
 #######################################
 alias his='history'
