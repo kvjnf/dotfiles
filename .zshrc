@@ -97,6 +97,12 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 #######################################
+# neofetch
+#######################################
+if type "neofetch" > /dev/null 2>&1; then
+    neofetch
+fi
+#######################################
 # Alias
 #######################################
 alias his='history'
