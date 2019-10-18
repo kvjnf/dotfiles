@@ -7,8 +7,8 @@ setopt AUTO_PUSHD
 autoload -Uz compinit
 compinit
 #プロンプトに関する設定
-PROMPT="[%n@%m]%# "
-RPROMPT="[%~]"
+#PROMPT="[%n@%m]%# "
+#RPROMPT="[%~]"
 #^Dでzshを終了しない
 setopt IGNORE_EOF
 #^Q/^Sのフローコントロールを無効にする
