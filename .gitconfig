@@ -1,2 +1,11 @@
 [alias]
-    tree = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue) %h %Cgreen %ar %Creset%x09 "%C(cyan ul)%an%Creset" - %C(auto)%s %d'
+    tree = log --graph --abbrev-commit --decorate --branches --remotes --format=format:'%C(bold blue) %h %Cgreen %ar %Creset%x09 "%C(cyan ul)%an%Creset" - %C(auto)%s %d'
+[user]
+	name = Daisuke Akiyama
+	email = 8176799+kvjnf@users.noreply.github.com 
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
