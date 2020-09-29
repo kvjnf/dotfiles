@@ -61,7 +61,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 case ${OSTYPE} in
     darwin*)
 #export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-        export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+#        export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
         ;;
 esac
 #######################################
