@@ -153,9 +153,8 @@ alias log='tail -f 5'
 alias g='git'
 alias gs='git status'
 alias gl='git log'
-alias grm = 'git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
+alias grm="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
 alias rm='rm -i'
-alias cfx='~/Desktop/works/firefox/addon-sdk-1.17/bin/cfx'
 
 alias subL="open -a /Applications/Sublime\ Text.app"
 alias chrome="open -a /Applications/Google\ Chrome.app"
