@@ -7,8 +7,8 @@ setopt AUTO_PUSHD
 autoload -Uz compinit
 compinit
 #プロンプトに関する設定
-PROMPT="[%n@%m]%# "
-RPROMPT="[%~]"
+#PROMPT="[%n@%m]%# "
+#RPROMPT="[%~]"
 #^Dでzshを終了しない
 setopt IGNORE_EOF
 #^Q/^Sのフローコントロールを無効にする
@@ -45,7 +45,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # Color
 #######################################
 # 色の設定
-export LSCOLORS=Exfxcxdxbxegedabagacad
+export LSCOLORS=gxfxcxdxbxegedabagacad
 # 補完時の色の設定
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 # ZLS_COLORSとは？
@@ -61,7 +61,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 case ${OSTYPE} in
     darwin*)
 #export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-        export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+#        export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
         ;;
 esac
 #######################################
@@ -103,6 +103,46 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 #######################################
+# neofetch
+#######################################
+if type "neofetch" > /dev/null 2>&1; then
+    neofetch
+fi
+#######################################
+# zplug
+#######################################
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+zplug "b-ryan/powerline-shell"
+
+# 未インストール項目をインストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+#######################################
+# powerline-shell
+#######################################
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
+#######################################
 # Alias
 #######################################
 alias his='history'
@@ -119,8 +159,8 @@ alias log='tail -f 5'
 alias g='git'
 alias gs='git status'
 alias gl='git log'
+alias grm="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
 alias rm='rm -i'
-alias cfx='~/Desktop/works/firefox/addon-sdk-1.17/bin/cfx'
 
 alias subL="open -a /Applications/Sublime\ Text.app"
 alias chrome="open -a /Applications/Google\ Chrome.app"
