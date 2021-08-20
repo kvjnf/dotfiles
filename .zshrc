@@ -111,7 +111,15 @@ fi
 #######################################
 # zplug
 #######################################
-export ZPLUG_HOME=/usr/local/opt/zplug
+if command apt > /dev/null; then
+  
+  export ZPLUG_HOME=/usr/local/opt/zplug
+  
+elif [[ `uname` == "Darwin" ]]; then
+
+  export ZPLUG_HOME=~/.zplug  
+
+fi
 source $ZPLUG_HOME/init.zsh
 zplug "b-ryan/powerline-shell"
 
