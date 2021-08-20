@@ -82,6 +82,12 @@ export PATH="$HOME/.local/bin:$PATH"
 #######################################
 export PATH="$(yarn global bin):$PATH"
 #######################################
+# golang PATH設定
+#######################################
+export PATH="/usr/lib/go-1.11/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+#######################################
 # rbenvの設定
 #######################################
 #[[ -d ~/.rbenv  ]] && \
