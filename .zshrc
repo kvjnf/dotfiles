@@ -84,6 +84,12 @@ export PATH="$HOME/.local/bin:$PATH"
 #######################################
 export PATH="$(yarn global bin):$PATH"
 #######################################
+# golang PATH設定
+#######################################
+export PATH="/usr/lib/go-1.11/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+#######################################
 # rbenvの設定
 #######################################
 #[[ -d ~/.rbenv  ]] && \
@@ -107,7 +113,15 @@ fi
 #######################################
 # zplug
 #######################################
-export ZPLUG_HOME=/usr/local/opt/zplug
+if command apt > /dev/null; then
+  
+  export ZPLUG_HOME=/usr/local/opt/zplug
+  
+elif [[ `uname` == "Darwin" ]]; then
+
+  export ZPLUG_HOME=~/.zplug  
+
+fi
 source $ZPLUG_HOME/init.zsh
 zplug "b-ryan/powerline-shell"
 
