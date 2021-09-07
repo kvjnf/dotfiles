@@ -16,3 +16,9 @@
 	required = true
 [pull]
 	rebase = false
+[merge]
+	tool = vimdiff
+[mergetool]
+	keepBackup = false
+[init]
+	defaultBranc = master
