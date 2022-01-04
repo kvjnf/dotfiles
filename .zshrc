@@ -172,6 +172,7 @@ alias gl='git log'
 alias grm="git branch --merged | egrep -v '(^\*|master|dev)' | xargs git branch -d"
 alias rm='rm -i'
 
+alias ssh='~/ssh-change-profile.sh'
 alias subL="open -a /Applications/Sublime\ Text.app"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias Stree="open -a /Applications/SourceTree.app"
