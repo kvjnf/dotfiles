@@ -82,22 +82,13 @@ export PATH="$HOME/.local/bin:$PATH"
 #######################################
 # yarn PATH設定
 #######################################
-export PATH="$(yarn global bin):$PATH"
+#export PATH="$(yarn global bin):$PATH"
 #######################################
 # golang PATH設定
 #######################################
 export PATH="/usr/lib/go-1.11/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
-#######################################
-# rbenvの設定
-#######################################
-#[[ -d ~/.rbenv  ]] && \
-#  export PATH=${HOME}/.rbenv/bin:${PATH} && \
-#  eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 #######################################
 # ANDROID_HOME設定
 #######################################
@@ -115,23 +106,17 @@ fi
 #######################################
 if command apt > /dev/null; then
   
-  export ZPLUG_HOME=/usr/local/opt/zplug
+  if [ -f ${HOME}/.zplug/init.zsh ]; then
+    source ${HOME}/.zplug/init.zsh
+  fi
   
 elif [[ `uname` == "Darwin" ]]; then
 
-  export ZPLUG_HOME=~/.zplug  
+  export ZPLUG_HOME=$(brew --prefix)/opt/zplug
+  source $ZPLUG_HOME/init.zshv
 
 fi
-source $ZPLUG_HOME/init.zsh
-zplug "b-ryan/powerline-shell"
 
-# 未インストール項目をインストールする
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
 
 #######################################
 # powerline-shell
@@ -205,3 +190,5 @@ fi
 
 # added by travis gem
 [ -f /home/kvjnf/.travis/travis.sh ] && source /home/kvjnf/.travis/travis.sh
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
